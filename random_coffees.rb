@@ -1,3 +1,5 @@
+require "mail"
+
 def coffee_selector
 	arr = ["calvin", "archer", "phil", "vera", "ade", "calum", "daniel", "jade", "jade G", "jasmine", "kris", "marc", "matt", "mike", "rhys", "roxy", "steph", "tom", "vasyl"]
 	res_arr = []
@@ -22,3 +24,12 @@ res_arr.each do |x|
 		puts "#{x[0]} must meet #{x[1]} for a beverage at some point this week"
 	end
 end
+
+mail = Mail.new do
+  from    'mikel@test.lindsaar.net'
+  to      'you@test.lindsaar.net'
+  subject 'This is a test email'
+  body    File.read('body.txt')
+end
+
+mail.deliver!
