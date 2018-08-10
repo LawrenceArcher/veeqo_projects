@@ -1,4 +1,5 @@
 require "mail"
+require "erb"
 
 def coffee_selector
 	arr = ["calvin", "archer", "phil", "vera", "ade", "calum", "daniel", "jade", "jade G", "jasmine", "kris", "marc", "matt", "mike", "rhys", "roxy", "steph", "tom", "vasyl"]
@@ -15,7 +16,10 @@ def coffee_selector
 		arr.delete(name2)
 		res_arr.push([name1, name2])
 	end
+	res_arr
 end
+
+res_arr = coffee_selector
 
 res_arr.each do |x|
 	if x.length == 3
@@ -25,9 +29,19 @@ res_arr.each do |x|
 	end
 end
 
+template_email = File.read "email.html.erb"
+erb_template = ERB.new template_email
+
+
+
+
+
+
+
+
 mail = Mail.new do
-  from    'mikel@test.lindsaar.net'
-  to      'you@test.lindsaar.net'
+  from    'lawrence@veeqo.com'
+  to      'lawrence.archer@gmail.com'
   subject 'This is a test email'
   body    File.read('body.txt')
 end
